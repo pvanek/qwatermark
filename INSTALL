@@ -1,0 +1,7 @@
+--HOW TO COMPILE--
+
+You need QT library
+
+1. cd QWatermark
+2. qmake
+3. make
