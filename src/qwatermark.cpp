@@ -32,6 +32,7 @@ QWatermark::QWatermark(QWidget *parent)
     sourceLineEdit->setText(s.value("sourcePath").toString());
     destinationLineEdit->setText(s.value("destinationPath").toString());
     previewZoomSpinBox->setValue(s.value("zoom", 30).toInt());
+    treeCheckBox->setChecked(s.value("treeIteration", false).toBool());
 
     int ix = profileComboBox->findText(s.value("profile", tr("Default")).toString());
     if (ix > -1)
@@ -78,6 +79,7 @@ void QWatermark::closeEvent(QCloseEvent *event)
     s.setValue("buttonGroup", buttonGroup->checkedId());
     s.setValue("zoom", previewZoomSpinBox->value());
     s.setValue("profile", profileComboBox->currentText());
+    s.setValue("treeIteration", treeCheckBox->isChecked());
     s.endGroup();
     QWidget::closeEvent(event);
 }
@@ -216,16 +218,16 @@ void QWatermark::paintOne(int w, int h, QPainter *painter, Profile *profile)
     else if (UCRadioButton->isChecked())
     {
         imageX = w/2 - size.width()/2;
-        imageY = 0;
+        imageY = 0 + profile->marginVertical();
     }
     else if (URRadioButton->isChecked())
     {
-        imageX = w - size.width();
-        imageY = 0;
+        imageX = w - size.width() - profile->marginHorizontal();
+        imageY = 0 + profile->marginVertical();
     }
     else if (CLRadioButton->isChecked())
     {
-        imageX = 0;
+        imageX = 0 + profile->marginHorizontal();
         imageY = h/2 - size.height()/2;
     }
     else if (CCRadioButton->isChecked())
@@ -235,23 +237,23 @@ void QWatermark::paintOne(int w, int h, QPainter *painter, Profile *profile)
     }
     else if (CRRadioButton->isChecked())
     {
-        imageX = w - size.width();
+        imageX = w - size.width() - profile->marginHorizontal();
         imageY = h/2 - size.height()/2;
     }
     else if (LLRadioButton->isChecked())
     {
-        imageX = 0;
-        imageY = h - size.height();
+        imageX = 0 + profile->marginHorizontal();
+        imageY = h - size.height() - profile->marginVertical();
     }
     else if (LCRadioButton->isChecked())
     {
         imageX = w/2 - size.width()/2;
-        imageY = h - size.height();
+        imageY = h - size.height() - profile->marginVertical();
     }
     else if (LRRadioButton->isChecked())
     {
-        imageX = w - size.width();
-        imageY = h - size.height();
+        imageX = w - size.width() - profile->marginHorizontal();
+        imageY = h - size.height() - profile->marginVertical();
     }
 
     switch (profile->type())

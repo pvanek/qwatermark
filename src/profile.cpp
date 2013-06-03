@@ -53,6 +53,9 @@ void Profile::load()
     m_watermarkText = s.value("text", QApplication::applicationName() + " " + QApplication::applicationVersion()).toString();
     m_watermarkImage = s.value("image").toString();
 
+    m_marginHorizontal = s.value("marginHorizontal", 10).toInt();
+    m_marginVertical = s.value("marginVertical", 10).toInt();
+
     m_transparency = s.value("transparency", 0.5).toReal();
 
     QString fontStr = s.value("font", "n/a").toString();
@@ -81,6 +84,9 @@ void Profile::save()
 
     s.setValue("text", m_watermarkText);
     s.setValue("image", m_watermarkImage);
+
+    s.setValue("marginHorizontal", m_marginHorizontal);
+    s.setValue("marginVertical", m_marginVertical);
 
     s.setValue("transparency", m_transparency);
 
@@ -157,6 +163,8 @@ bool Profile::operator!=(const Profile &other) const
     qDebug() << "   font:" << this->font() << other.font() << this->font().toString() << other.font().toString();
     return     this->type() != other.type()
             || this->text() != other.text()
+            || this->marginHorizontal() != other.marginHorizontal()
+            || this->marginVertical() != other.marginVertical()
             || this->logoPath() != other.logoPath()
             || this->font() != other.font()
             || this->mainColor() != other.mainColor()

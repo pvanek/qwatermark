@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>539</width>
-    <height>489</height>
+    <width>592</width>
+    <height>482</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Profile Configuration</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QGridLayout" name="gridLayout_3">
    <item row="0" column="0">
     <layout class="QVBoxLayout" name="verticalLayout">
      <property name="spacing">
@@ -60,7 +60,7 @@
         <string>Profile Configuration</string>
        </property>
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="0" column="0">
+        <item row="0" column="0" colspan="2">
          <layout class="QHBoxLayout" name="opacityHorizontalLayout" stretch="0,10,0">
           <item>
            <widget class="QLabel" name="transparencyLabel">
@@ -100,6 +100,49 @@
           </item>
          </layout>
         </item>
+        <item row="0" column="2" rowspan="2">
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>Margins</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>Horizontal:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QSpinBox" name="horizontalSpinBox">
+             <property name="suffix">
+              <string> px</string>
+             </property>
+             <property name="maximum">
+              <number>1000</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>Vertical:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QSpinBox" name="verticalSpinBox">
+             <property name="suffix">
+              <string> px</string>
+             </property>
+             <property name="maximum">
+              <number>1000</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
         <item row="1" column="0">
          <widget class="QRadioButton" name="textRadioButton">
           <property name="text">
@@ -107,7 +150,7 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
+        <item row="1" column="1">
          <widget class="QRadioButton" name="imageRadioButton">
           <property name="text">
            <string>Use Image</string>
@@ -117,7 +160,7 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
+        <item row="2" column="0" colspan="3">
          <widget class="QStackedWidget" name="typeStackedWidget">
           <property name="currentIndex">
            <number>0</number>
@@ -145,7 +188,7 @@
              <widget class="QFontComboBox" name="fontComboBox">
               <property name="currentFont">
                <font>
-                <family>Helvetica</family>
+                <family>Nimbus Sans L</family>
                 <weight>75</weight>
                 <bold>true</bold>
                </font>
@@ -309,7 +352,7 @@
      </item>
     </layout>
    </item>
-   <item row="1" column="0" colspan="2">
+   <item row="1" column="1">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>

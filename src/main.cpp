@@ -12,6 +12,8 @@ int main(int argc, char *argv[])
     QApplication::setOrganizationDomain("yarpen.cz");
 
     QApplication a(argc, argv);
+    a.setWindowIcon(QIcon(":/logo.png"));
+
     QWatermark w;
     w.show();
     return a.exec();

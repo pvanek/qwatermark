@@ -38,6 +38,12 @@ public:
     QString text() const;
     void setText(const QString &t) { m_watermarkText = t; }
 
+    int marginVertical() const { return m_marginVertical; }
+    void setMarginVertical(int v) { m_marginVertical = v; }
+
+    int marginHorizontal() const { return m_marginHorizontal; }
+    void setMarginHorizontal(int v) { m_marginHorizontal = v; }
+
     qreal transparency() const;
     void setTransparency(qreal t) { m_transparency = t; }
 
@@ -58,6 +64,9 @@ private:
 
     QString m_watermarkText;
     QString m_watermarkImage;
+
+    int m_marginVertical;
+    int m_marginHorizontal;
 
     qreal m_transparency;
 

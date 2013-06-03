@@ -25,6 +25,11 @@ ProfileDialog::ProfileDialog(const QString &name, QWidget *parent) :
     connect(textRadioButton, SIGNAL(toggled(bool)),
             this, SLOT(imageTextChange(void)));
 
+    connect(horizontalSpinBox, SIGNAL(valueChanged(int)),
+            this, SLOT(horizontalSpinBox_valueChanged(int)));
+    connect(verticalSpinBox, SIGNAL(valueChanged(int)),
+            this, SLOT(verticalSpinBox_valueChanged(int)));
+
     connect(watermarkPushButton, SIGNAL(clicked()),
             this, SLOT(selectLogo(void)));
     connect(textColorButton,SIGNAL(clicked()),
@@ -65,6 +70,8 @@ ProfileDialog::ProfileDialog(const QString &name, QWidget *parent) :
         listWidget->setCurrentItem(l.at(0));
     else
         listWidget->setCurrentRow(0);
+
+    deleteButton->setEnabled(listWidget->count() > 1);
 
     loadProfile(name.isNull() ? "Default" : name);
 }
@@ -115,6 +122,8 @@ void ProfileDialog::loadProfile(const QString &name)
     boldToolButton->setChecked(m_profile.font().bold());
     italicToolButton->setChecked(m_profile.font().italic());
     underlineToolButton->setChecked(m_profile.font().underline());
+    horizontalSpinBox->setValue(m_profile.marginHorizontal());
+    verticalSpinBox->setValue(m_profile.marginVertical());
 
     setButtonColor(m_profile.mainColor(), textColorButton);
     setButtonColor(m_profile.outlineColor(), outlineColorButton);
@@ -181,9 +190,23 @@ void ProfileDialog::plainTextEdit_textChanged()
     m_profile.setText(plainTextEdit->toPlainText());
 }
 
+void ProfileDialog::horizontalSpinBox_valueChanged(int v)
+{
+    m_profile.setMarginHorizontal(v);
+}
+
+void ProfileDialog::verticalSpinBox_valueChanged(int v)
+{
+    m_profile.setMarginVertical(v);
+}
+
 void ProfileDialog::font_changed()
 {
-    QFont f = fontComboBox->currentFont();
+    qDebug() << "font changed" << fontComboBox->currentFont() << fontComboBox->currentText();
+    //QFont f = fontComboBox->currentFont();
+    QFont f;
+
+    f.setFamily(fontComboBox->currentText());
 
     f.setBold(boldToolButton->isChecked());
     f.setUnderline(underlineToolButton->isChecked());
@@ -241,9 +264,14 @@ void ProfileDialog::addButton_clicked()
         listWidget->setCurrentRow(listWidget->count()-1);
         listWidget->sortItems();
     }
+
+    deleteButton->setEnabled(listWidget->count() > 1);
 }
 
 void ProfileDialog::deleteButton_clicked()
 {
+    qDebug() << "deleteButton_clicked";
     m_profile.remove();
+    delete listWidget->takeItem(listWidget->currentRow());
+    deleteButton->setEnabled(listWidget->count() > 1);
 }

@@ -28,6 +28,8 @@ private slots:
 
     void selectLogo(void);
     void imageTextChange(void);
+    void horizontalSpinBox_valueChanged(int v);
+    void verticalSpinBox_valueChanged(int v);
     void textColorButton_clicked(void);
     void outlineColorButton_clicked();
     void transparency_valueChanged(int value);
