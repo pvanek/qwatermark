@@ -36,6 +36,8 @@ ProfileDialog::ProfileDialog(const QString &name, QWidget *parent) :
             this, SLOT(textColorButton_clicked(void)));
     connect(outlineColorButton,SIGNAL(clicked()),
             this, SLOT(outlineColorButton_clicked(void)));
+    connect(outlineSpinBox, SIGNAL(valueChanged(int)),
+            this, SLOT(outlineSpinBox_valueChanged(int)));
 
     connect(transparencyHorizontalSlider, SIGNAL(valueChanged(int)),
             transparencySpinBox, SLOT(setValue(int)));
@@ -178,6 +180,11 @@ void ProfileDialog::outlineColorButton_clicked(void)
     QColor c = QColorDialog::getColor(m_profile.outlineColor(), this);
     setButtonColor(c, outlineColorButton);
     m_profile.setOutlineColor(c);
+}
+
+void ProfileDialog::outlineSpinBox_valueChanged(int v)
+{
+    m_profile.setOutlineSize(v);
 }
 
 void ProfileDialog::transparency_valueChanged(int value)

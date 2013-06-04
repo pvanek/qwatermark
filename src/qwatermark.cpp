@@ -88,8 +88,10 @@ void QWatermark::closeEvent(QCloseEvent *event)
 void QWatermark::selectSourceFolder(void)
 {
 	//Create a dialog to select a folder
-	QString sourceDirectoryName = QFileDialog::getExistingDirectory(this,tr("Open Source Directory"),
-			"",QFileDialog::ShowDirsOnly);
+    QString sourceDirectoryName = QFileDialog::getExistingDirectory(this,
+                                                                    tr("Open Source Directory"),
+                                                                    sourceLineEdit->text(),
+                                                                    QFileDialog::ShowDirsOnly);
     if (sourceDirectoryName.isNull())
         return;
 
@@ -101,8 +103,10 @@ void QWatermark::selectSourceFolder(void)
 //Select destination folder for images (similar to source)
 void QWatermark::selectDestinationFolder(void)
 {
-	QString destinationDirectoryName = QFileDialog::getExistingDirectory(this,tr("Open Destination Directory"),
-			"",QFileDialog::ShowDirsOnly);
+    QString destinationDirectoryName = QFileDialog::getExistingDirectory(this,
+                                                                         tr("Open Destination Directory"),
+                                                                         destinationLineEdit->text(),
+                                                                         QFileDialog::ShowDirsOnly);
 
     if (destinationDirectoryName.isNull())
         return;
@@ -265,7 +269,7 @@ void QWatermark::paintOne(int w, int h, QPainter *painter, Profile *profile)
     {
         painter->setBrush(profile->mainColor());
         QPen pen(profile->outlineColor());
-        pen.setWidth(2);
+        pen.setWidth(profile->outlineSize());
         painter->setPen(pen);
 
         QPainterPath path;

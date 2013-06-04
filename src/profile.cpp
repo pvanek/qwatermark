@@ -71,6 +71,8 @@ void Profile::load()
     m_mainColor = QColor(s.value("mainColor", "#ffffff").toString());
     m_outlineColor = QColor(s.value("outlineColor", "#000000").toString());
 
+    m_outlineSize = s.value("outlineSize", 2).toInt();
+
     s.endGroup();
 }
 
@@ -94,6 +96,7 @@ void Profile::save()
 
     s.setValue("mainColor", m_mainColor.name());
     s.setValue("outlineColor", m_outlineColor.name());
+    s.setValue("outlineSize", m_outlineSize);
 
     s.endGroup();
 }
@@ -169,5 +172,6 @@ bool Profile::operator!=(const Profile &other) const
             || this->font() != other.font()
             || this->mainColor() != other.mainColor()
             || this->outlineColor() != other.outlineColor()
+            || this->outlineSize() != other.outlineSize()
             || !qFuzzyCompare(this->transparency(), other.transparency());
 }

@@ -32,6 +32,7 @@ private slots:
     void verticalSpinBox_valueChanged(int v);
     void textColorButton_clicked(void);
     void outlineColorButton_clicked();
+    void outlineSpinBox_valueChanged(int v);
     void transparency_valueChanged(int value);
     void plainTextEdit_textChanged();
     void font_changed();

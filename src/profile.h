@@ -56,6 +56,9 @@ public:
     QColor outlineColor() const;
     void setOutlineColor(const QColor &c) { m_outlineColor = c; }
 
+    int outlineSize() const { return m_outlineSize; }
+    void setOutlineSize(int s) { m_outlineSize = s; }
+
     QSize size(int w=0, int h=0);
 
 private:
@@ -73,6 +76,7 @@ private:
     QFont m_font;
     QColor m_mainColor;
     QColor m_outlineColor;
+    int m_outlineSize;
 
     void load();
 
